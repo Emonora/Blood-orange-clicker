@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import { getScore, setScor } from "../utils/cookies/score";
 import Shop from "./_components/shop";
+import { getOwned } from "~/utils/cookies/getOwned";
 
 export default function HomePage() {
   const [score, setScore] = useState<number>(0);
 
   const handleClick = () => {
-    setScore(score + 1);
-    setScor(score + 1);
+    setScore(score + 1 + getOwned("cursor"));
+    setScor(score + 1 + getOwned("cursor"));
   };
 
   const changeScore = (scor: number) => {

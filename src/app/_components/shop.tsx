@@ -16,7 +16,6 @@ export default function Shop({ changeScore }: Props) {
         changeScore(score -= cost);
         scaleCost(cost, 1, 1, getOwned(building));
         setOwned(building, getOwned(building) + 1);
-        alert("Purchased");
       }
       else {
         alert("Not enough score");
