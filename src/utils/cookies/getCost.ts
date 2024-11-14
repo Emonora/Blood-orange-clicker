@@ -32,5 +32,5 @@ export function getCost(name: string): number {
 }
 
 export function setCost(name: string, value: number): void {
-  Cookie.set(`${name}_cost`, JSON.stringify(value));
+  Cookie.set(`${name}_cost`, value.toString());
 }

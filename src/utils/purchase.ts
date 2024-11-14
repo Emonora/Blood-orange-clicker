@@ -8,3 +8,7 @@ export default function purchase(building: string, cost: number, score: number) 
     }
     return Error('Invalid building');
 }
+
+export function scaleCost(cost: number, purchased: number, scale: number, total: number) {
+    return (2 * cost) * purchased * purchased * scale / total;
+}

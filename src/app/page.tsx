@@ -12,6 +12,11 @@ export default function HomePage() {
     setScor(score + 1);
   };
 
+  const changeScore = (scor: number) => {
+    setScore(scor);
+    setScor(scor);
+  };
+
   useEffect(() => {
     setScore(getScore());
   }, []);
@@ -23,6 +28,7 @@ export default function HomePage() {
         onClick={handleClick}
         className="h-20 w-20 rounded-full bg-amber-500 shadow-lg hover:bg-amber-700 active:bg-amber-950"
       ></button>
+      <Shop changeScore={changeScore} />
     </main>
   );
 }
