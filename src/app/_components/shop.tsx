@@ -14,7 +14,7 @@ export default function Shop({ changeScore }: Props) {
     if (buildinglist.includes(building)) {
       if (score >= cost) {
         changeScore(score -= cost);
-        scaleCost(cost, 1, 1, getOwned(building));
+        setCost("cursor", scaleCost(cost, 1, 1, getOwned(building)));
         setOwned(building, getOwned(building) + 1);
       }
       else {
