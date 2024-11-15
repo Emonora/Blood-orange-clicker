@@ -1,6 +1,6 @@
-import Cookie from 'js-cookie';
+import Cookie from "js-cookie";
 
-const COOKIE_NAME = 'score';
+const COOKIE_NAME = "score";
 
 export const getScore = () => {
   const cookie = Cookie.get(COOKIE_NAME);
