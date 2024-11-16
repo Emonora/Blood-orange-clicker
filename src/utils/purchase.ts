@@ -13,10 +13,6 @@ export default function purchase(
   return Error("Invalid building");
 }
 
-export function scaleCost(
-  baseCost: number,
-  scale: number,
-  total: number,
-) {
-  return Math.floor(baseCost + ((total ** 2) * scale));
+export function scaleCost(baseCost: number, scale: number, total: number) {
+  return Math.floor(baseCost + total ** 2 * scale);
 }
