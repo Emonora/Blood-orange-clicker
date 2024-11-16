@@ -3,7 +3,6 @@ import { getScore } from "../../utils/cookies/score";
 import { getCost, setCost } from "../../utils/cookies/getCost";
 import { scaleCost } from "../../utils/purchase";
 import { getOwned, setOwned } from "~/utils/cookies/getOwned";
-import { get } from "http";
 
 interface Props {
   changeScore: (score: number) => void;
