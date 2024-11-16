@@ -12,7 +12,7 @@ interface Props {
 const buildingList: string[] = ["cursor", "tree", "shed", "farm", "orchard"];
 
 export default function Shop({ changeScore }: Props) {
-  const [score, setScore] = useState<number>(0);
+  const [score ,setScore] = useState<number>(0);
 
   useEffect(() => {
     const initialScore = getScore();
@@ -24,7 +24,9 @@ export default function Shop({ changeScore }: Props) {
       alert("Invalid building");
       return;
     }
+
     const curScore = getScore();
+
     if (curScore >= cost) {
       const newScore = curScore - cost;
       setScore(newScore);
