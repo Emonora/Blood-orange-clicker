@@ -19,6 +19,23 @@ export default function Shop({ changeScore }: Props) {
   }, []);
 
   const handlePurchase = (building: string, cost: number) => {
+    const bonus = [1, 10, 100, 1000];
+    let newBonus: any = 0;
+    if (building === "tree") {
+      newBonus = bonus[0];
+    } 
+    if (building === "shed") {
+      newBonus = bonus[1];
+    }
+    if (building === "farm") {
+      newBonus = bonus[2];
+    }
+    if (building === "orchard") {
+      newBonus = bonus[3];
+    }
+    if (building === "cursor") {
+      newBonus = bonus[0];
+    }
     if (!buildingList.includes(building)) {
       alert("Invalid building");
       return;
@@ -33,11 +50,11 @@ export default function Shop({ changeScore }: Props) {
 
       const newCost = scaleCost(cost, 1, getOwned(building));
       setCost(building, newCost);
-
-      setOwned(building, getOwned(building) + 1);
-    } else {
-      alert("Not enough score");
+      
+      setOwned(building, getOwned(building) + newBonus);
+      return;
     }
+    alert("Not enough score");
   };
 
   const renderBuildingButton = (building: string) => {
