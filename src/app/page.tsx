@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { getScore, setScor } from "../utils/cookies/score";
 import Shop from "./_components/shop";
 import { getOwned } from "~/utils/cookies/getOwned";
-import { set } from "zod";
 
 export default function HomePage() {
   const [score, setScore] = useState<number>(0);
@@ -25,17 +24,20 @@ export default function HomePage() {
 
   useEffect(() => {
     const update = setInterval(() => {
-      const updated = getOwned("tree") + getOwned("farm") + getOwned("shed") + getOwned("orchard");
+      const updated =
+        getOwned("tree") +
+        getOwned("farm") +
+        getOwned("shed") +
+        getOwned("orchard");
       console.log(updated);
       const oldScore = getScore();
       console.log(oldScore);
       setScore(oldScore + updated);
       setScor(oldScore + updated);
     }, 1000);
-    
+
     return () => clearInterval(update);
   }, []);
-
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center bg-black text-white">
