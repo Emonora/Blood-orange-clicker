@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getScore, setScor } from "../utils/cookies/score";
+import { getScore, setScor } from "~/utils/cookies/score";
 import Shop from "./_components/shop";
 import { getOwned } from "~/utils/cookies/getOwned";
-import { set } from "zod";
+import { reset } from "~/utils/reset";
+import { winOrLose } from "~/utils/winOrLose";
+import { useToast } from "~/hooks/use-toast"
+
 
 export default function HomePage() {
+  const { toast } = useToast();
   const [score, setScore] = useState<number>(0);
 
   const handleClick = () => {
@@ -25,6 +29,25 @@ export default function HomePage() {
 
   useEffect(() => {
     const update = setInterval(() => {
+      if (getScore() < 0) {
+        toast({
+          variant: "destructive",
+          title: "Game Over!",
+          description: "Your score is negative :(",
+        })
+        reset();
+        return () => clearInterval(update);
+      }
+
+      if (winOrLose(getScore()) === 1) {
+        toast({
+          title: "You Win",
+          description: "You've hit the score goal!",
+        })
+        reset();
+        return () => clearInterval(update);
+      }
+
       const updated = getOwned("tree") + getOwned("farm") + getOwned("shed") + getOwned("orchard");
       console.log(updated);
       const oldScore = getScore();

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { getScore } from "../../utils/cookies/score";
-import { getCost, setCost } from "../../utils/cookies/getCost";
-import { scaleCost } from "../../utils/purchase";
+import { getScore } from "~/utils/cookies/score";
+import { getCost, setCost } from "~/utils/cookies/getCost";
+import { scaleCost } from "~/utils/purchase";
 import { getOwned, setOwned } from "~/utils/cookies/getOwned";
+import { toast } from "~/hooks/use-toast";
 
 interface Props {
   changeScore: (score: number) => void;
@@ -37,24 +38,25 @@ export default function Shop({ changeScore }: Props) {
       newBonus = bonus[0];
     }
     if (!buildingList.includes(building)) {
-      alert("Invalid building");
+      toast({
+        variant: "destructive",
+        title: "Invalid building",
+        description: "The provided building is not valid",
+      })
       return;
     }
 
     const curScore = getScore();
 
-    if (curScore >= cost) {
-      const newScore = curScore - cost;
-      setScore(newScore);
-      changeScore(newScore);
+    const newScore = curScore - cost;
+    setScore(newScore);
+    changeScore(newScore);
 
-      const newCost = scaleCost(cost, 1, getOwned(building));
-      setCost(building, newCost);
+    const newCost = scaleCost(cost, 1, getOwned(building));
+    setCost(building, newCost);
       
-      setOwned(building, getOwned(building) + newBonus);
-      return;
-    }
-    alert("Not enough score");
+    setOwned(building, getOwned(building) + newBonus);
+    return;
   };
 
   const renderBuildingButton = (building: string) => {
