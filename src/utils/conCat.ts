@@ -1,5 +1,9 @@
 export function conCat(num: number): string {
-  if (num >= 1_000_000_000) {
+  if (num >= 1_000_000_000_000) {
+    const value = num / 1_000_000_000_000;
+    return value % 1 === 0 ? `${value}T` : value.toFixed(2) + "T";
+  }
+  else if (num >= 1_000_000_000) {
     const value = num / 1_000_000_000;
     return value % 1 === 0 ? `${value}B` : value.toFixed(2) + "B";
   }
