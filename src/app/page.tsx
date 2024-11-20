@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getScore, setScor } from "../utils/cookies/score";
+import { getScore, setScor } from "~/utils/cookies/score";
 import Shop from "./_components/shop";
 import { getOwned } from "~/utils/cookies/getOwned";
 
 export default function HomePage() {
+  const { toast } = useToast();
   const [score, setScore] = useState<number>(0);
 
   const handleClick = () => {
