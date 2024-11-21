@@ -23,6 +23,7 @@ export default function Shop({ changeScore }: Props) {
   const handlePurchase = (building: string, cost: number) => {
     const bonus = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
     let newBonus: any = 0;
+    
     if (building === "tree") {
       newBonus = bonus[0];
     } 
@@ -50,6 +51,7 @@ export default function Shop({ changeScore }: Props) {
     if (building === "cursor") {
       newBonus = bonus[0];
     }
+    
     if (!buildingList.includes(building)) {
       toast({
         variant: "destructive",
