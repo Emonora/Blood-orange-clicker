@@ -23,19 +23,33 @@ export default function Shop({ changeScore }: Props) {
   const handlePurchase = (building: string, cost: number) => {
     const bonus = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
     let newBonus: any = 0;
-    const buildingBonuses: any = {
-      "tree": 0,
-      "shed": 1,
-      "farm": 2,
-      "orchard": 3,
-      "greenhouse": 4,
-      "mine": 5,
-      "bank": 6,
-      "tower": 7,
-      "cursor": 0
-    };
-
-    newBonus = bonus[buildingBonuses[building]];
+    if (building === "tree") {
+      newBonus = bonus[0];
+    } 
+    if (building === "shed") {
+      newBonus = bonus[1];
+    }
+    if (building === "farm") {
+      newBonus = bonus[2];
+    }
+    if (building === "orchard") {
+      newBonus = bonus[3];
+    }
+    if (building === "greenhouse") {
+      newBonus = bonus[4];
+    }
+    if (building === "mine") {
+      newBonus = bonus[5];
+    }
+    if (building === "bank") {
+      newBonus = bonus[6];
+    }
+    if (building === "tower") {
+      newBonus = bonus[7];
+    }
+    if (building === "cursor") {
+      newBonus = bonus[0];
+    }
     if (!buildingList.includes(building)) {
       toast({
         variant: "destructive",
