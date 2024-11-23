@@ -8,6 +8,8 @@ import { reset } from "~/utils/reset";
 import { winOrLose } from "~/utils/winOrLose";
 import { useToast } from "~/hooks/use-toast";
 import { conCat } from "~/utils/conCat";
+import { getCPS } from "~/utils/cookies/getCps";
+import Owned from "./_components/owned";
 
 export default function HomePage() {
   const { toast } = useToast();
@@ -49,11 +51,7 @@ export default function HomePage() {
         return () => clearInterval(update);
       }
 
-      const updated =
-        getOwned("tree") +
-        getOwned("farm") +
-        getOwned("shed") +
-        getOwned("orchard");
+      const updated = getCPS();
       const oldScore = getScore();
       setScore(oldScore + updated);
       setScor(oldScore + updated);
@@ -70,6 +68,7 @@ export default function HomePage() {
         className="h-20 w-20 rounded-full bg-amber-500 shadow-lg hover:bg-amber-700 active:bg-amber-950"
       ></button>
       <Shop changeScore={changeScore} />
+      <Owned />
     </main>
   );
 }

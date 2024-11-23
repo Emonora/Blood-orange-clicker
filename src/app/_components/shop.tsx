@@ -5,6 +5,7 @@ import { scaleCost } from "~/utils/purchase";
 import { getOwned, setOwned } from "~/utils/cookies/getOwned";
 import { toast } from "~/hooks/use-toast";
 import { conCat } from "~/utils/conCat";
+import { setCPS } from "~/utils/cookies/getCps";
 
 interface Props {
   changeScore: (score: number) => void;
@@ -47,9 +48,6 @@ export default function Shop({ changeScore }: Props) {
     if (building === "tower") {
       newBonus = bonus[7];
     }
-    if (building === "cursor") {
-      newBonus = bonus[0];
-    }
     if (!buildingList.includes(building)) {
       toast({
         variant: "destructive",
@@ -68,7 +66,8 @@ export default function Shop({ changeScore }: Props) {
     const newCost = scaleCost(cost, 1, getOwned(building));
     setCost(building, newCost);
       
-    setOwned(building, getOwned(building) + newBonus);
+    setOwned(building, getOwned(building) + 1);
+    setCPS(newBonus);
     return;
   };
 
