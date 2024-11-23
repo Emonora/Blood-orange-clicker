@@ -4,7 +4,7 @@ import { getOwned } from "~/utils/cookies/getOwned";
 
 export default function Owned() {
     return (
-        <main className="text-sm overflow-auto max-h-full top-12 gap-4 pt-2 pb-2 absolute left-0">
+        <main className="text-sm overflow-auto max-h-full top-12 left-2 gap-4 pt-2 pb-2 pl-2 absolute">
             <h1 className="pb-2 text-base">Owned Buildings:</h1>
             <p>
                 Owned Cursor(s): {conCat(getOwned("cursor"))}
