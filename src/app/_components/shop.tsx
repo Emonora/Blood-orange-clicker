@@ -24,7 +24,7 @@ export default function Shop({ changeScore }: Props) {
   const handlePurchase = (building: string) => {
     const bonus = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
     let newBonus: any = 0;
-    let cost: number = 0;
+    let cost = 0;
     if (building === "tree") {
       newBonus = bonus[0];
       cost = 100;
