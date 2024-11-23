@@ -21,32 +21,44 @@ export default function Shop({ changeScore }: Props) {
     setScore(initialScore);
   }, []);
 
-  const handlePurchase = (building: string, cost: number) => {
+  const handlePurchase = (building: string) => {
     const bonus = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
     let newBonus: any = 0;
+    let cost: number = 0;
     if (building === "tree") {
       newBonus = bonus[0];
+      cost = 100;
     } 
     if (building === "shed") {
       newBonus = bonus[1];
+      cost = 1000;
     }
     if (building === "farm") {
       newBonus = bonus[2];
+      cost = 10000;
     }
     if (building === "orchard") {
       newBonus = bonus[3];
+      cost = 100000;
     }
     if (building === "greenhouse") {
       newBonus = bonus[4];
+      cost = 1000000;
     }
     if (building === "mine") {
       newBonus = bonus[5];
+      cost = 10000000;
     }
     if (building === "bank") {
       newBonus = bonus[6];
+      cost = 100000000;
     }
     if (building === "tower") {
       newBonus = bonus[7];
+      cost = 1000000000;
+    }
+    if (building === "cursor") {
+      cost = 10;
     }
     if (!buildingList.includes(building)) {
       toast({
@@ -58,12 +70,13 @@ export default function Shop({ changeScore }: Props) {
     }
 
     const curScore = getScore();
+    const curCost = getCost(building);
 
-    const newScore = curScore - cost;
+    const newScore = curScore - curCost;
     setScore(newScore);
     changeScore(newScore);
 
-    const newCost = scaleCost(cost, 1, getOwned(building));
+    const newCost = scaleCost(cost, 0.5, getOwned(building));
     setCost(building, newCost);
       
     setOwned(building, getOwned(building) + 1);
@@ -85,7 +98,7 @@ export default function Shop({ changeScore }: Props) {
     return (
       <button
         key={building}
-        onClick={() => handlePurchase(building, cost)}
+        onClick={() => handlePurchase(building)}
         className="h-32 w-32 rounded-full bg-amber-500 hover:bg-amber-800 active:bg-amber-950"
       >
         {building.charAt(0).toUpperCase() + building.slice(1)}

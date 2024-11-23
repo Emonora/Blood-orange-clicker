@@ -14,5 +14,5 @@ export default function purchase(
 }
 
 export function scaleCost(baseCost: number, scale: number, total: number) {
-  return Math.floor(baseCost + total ** 2 * scale);
+  return Math.floor(baseCost * (1 + scale) ** total);
 }
