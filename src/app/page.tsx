@@ -10,6 +10,8 @@ import { useToast } from "~/hooks/use-toast";
 import { conCat } from "~/utils/conCat";
 import { getCPS } from "~/utils/cookies/getCps";
 import Owned from "./_components/owned";
+import { achievementCheck, markAsEarned } from "~/utils/achievements";
+import { getClicks, setClicks } from "~/utils/cookies/saveClicks";
 
 export default function HomePage() {
   const { toast } = useToast();
@@ -19,6 +21,8 @@ export default function HomePage() {
     const newScore = score + 1 + getOwned("cursor");
     setScore(newScore);
     setScor(newScore);
+    const clicks = getClicks();
+    setClicks(clicks + 1);
   };
 
   const changeScore = (scor: number) => {
@@ -40,6 +44,14 @@ export default function HomePage() {
         });
         reset();
         return () => clearInterval(update);
+      }
+
+      if (achievementCheck() !== null && achievementCheck() !== undefined) {
+        toast({
+          title: "Achievement Unlocked!",
+          description: achievementCheck().description,
+        });
+        markAsEarned(achievementCheck().name);
       }
 
       if (winOrLose(getScore()) === 1) {
