@@ -45,13 +45,23 @@ export default function HomePage() {
         reset();
         return () => clearInterval(update);
       }
+      console.log(achievementCheck());
 
-      if (achievementCheck() !== null && achievementCheck() !== undefined) {
+      const achievement = achievementCheck();
+
+      if (
+        achievement != null &&
+        achievement.name !== "[No achievement]" &&
+        !achievement.earned
+      ) {
         toast({
           title: "Achievement Unlocked!",
-          description: achievementCheck().description,
+          description: achievement.description,
         });
-        markAsEarned(achievementCheck().name);
+
+        markAsEarned(achievement.name);
+
+        return () => clearInterval(update);
       }
 
       if (winOrLose(getScore()) === 1) {

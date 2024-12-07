@@ -5,5 +5,10 @@ export function setClicks(clicks: number) {
 }
 
 export function getClicks() {
+    if (!Cookies.get("clicks")) {
+        Cookies.set("clicks", "0");
+    } else if (isNaN(Number(Cookies.get("clicks")))) {
+        Cookies.set("clicks", "0");
+    }
     return Number(Cookies.get("clicks"));
 }
