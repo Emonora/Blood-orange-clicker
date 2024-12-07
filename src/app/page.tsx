@@ -45,7 +45,6 @@ export default function HomePage() {
         reset();
         return () => clearInterval(update);
       }
-      console.log(achievementCheck());
 
       const achievement = achievementCheck();
 
@@ -80,7 +79,7 @@ export default function HomePage() {
     }, 1000);
 
     return () => clearInterval(update);
-  }, []);
+  }, [toast]);
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-black text-white">

@@ -22,5 +22,6 @@ export function reset() {
   Cookies.remove("bank_cost");
   Cookies.remove("tower_cost");
   Cookies.remove("cps");
+  localStorage.removeItem("achievements");
   setScor(0);
 }
