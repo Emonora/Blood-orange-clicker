@@ -29,7 +29,7 @@ function loadAchievements(): any[] {
 
 export function achievementCheck() {
     const clicks = getClicks();
-    let achievements = loadAchievements(); 
+    const achievements = loadAchievements(); 
 
     for (const achievement of achievements) {
         if (clicks >= achievement.clicks && !achievement.earned) {
@@ -47,7 +47,7 @@ export function achievementCheck() {
 }
 
 export function markAsEarned(name: string) {
-    let achievements = loadAchievements(); 
+    const achievements = loadAchievements(); 
     achievements.forEach(achievement => {
         if (achievement.name === name) {
             achievement.earned = true; 
