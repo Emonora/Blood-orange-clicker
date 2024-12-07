@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { setScor } from "~/utils/cookies/score";
+import { resetAchievements } from "./achievements";
 
 export function reset() {
   Cookies.remove("score");
@@ -22,6 +23,6 @@ export function reset() {
   Cookies.remove("bank_cost");
   Cookies.remove("tower_cost");
   Cookies.remove("cps");
-  localStorage.removeItem("achievements");
+  resetAchievements();
   setScor(0);
 }

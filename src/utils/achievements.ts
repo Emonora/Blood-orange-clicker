@@ -18,6 +18,11 @@ const defaultAchievements = [
     { name: "Clicker 15", description: "Click 10000000 times", clicks: 10000000, earned: false, id: 14 },
 ];
 
+export function resetAchievements() {
+    localStorage.removeItem("achievements");
+    localStorage.setItem("achievements", JSON.stringify(defaultAchievements));
+}
+
 function saveAchievements(achievements: any[]) {
     localStorage.setItem("achievements", JSON.stringify(achievements));
 }
@@ -34,7 +39,7 @@ export function achievementCheck() {
     for (const achievement of achievements) {
         if (clicks >= achievement.clicks && !achievement.earned) {
             achievement.earned = true;
-            saveAchievements(achievements); 
+            saveAchievements(achievement); 
             return achievement;
         }
     }
